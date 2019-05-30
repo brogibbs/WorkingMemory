@@ -19,6 +19,7 @@ class AnswersViewController: UIViewController {
     @IBOutlet weak var sixthGuess: UITextField!
     
     @IBAction func checkAnswers(_ sender: Any) {
+        //checks users answers with correct answers
         firstCheck()
         secondCheck()
         thirdCheck()
