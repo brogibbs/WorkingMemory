@@ -10,7 +10,11 @@ import UIKit
 
 class AnswersViewController: UIViewController {
     var correctAnswers = [Int]()
+    var userGuessTextFields = [UITextField]()
+    var userGuesses = [String]()
+    var correctLabels = [UILabel]()
 
+    //user guesses
     @IBOutlet weak var firstGuess: UITextField!
     @IBOutlet weak var secondGuess: UITextField!
     @IBOutlet weak var thirdGuess: UITextField!
@@ -18,72 +22,64 @@ class AnswersViewController: UIViewController {
     @IBOutlet weak var fifthGuess: UITextField!
     @IBOutlet weak var sixthGuess: UITextField!
     
-    @IBAction func checkAnswers(_ sender: Any) {
-        //checks users answers with correct answers
-        firstCheck()
-        secondCheck()
-        thirdCheck()
-        fourthCheck()
-        fifthCheck()
-        sixthCheck()
-    }
+    //correct answers
+    @IBOutlet weak var firstAnswer: UILabel!
+    @IBOutlet weak var secondAnswer: UILabel!
+    @IBOutlet weak var thirdAnswer: UILabel!
+    @IBOutlet weak var fourthAnswer: UILabel!
+    @IBOutlet weak var fifthAnswer: UILabel!
+    @IBOutlet weak var sixthAnswer: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
+    func updateTextFieldArray() {
+        userGuessTextFields.append(firstGuess)
+        userGuessTextFields.append(secondGuess)
+        userGuessTextFields.append(thirdGuess)
+        userGuessTextFields.append(fourthGuess)
+        userGuessTextFields.append(fifthGuess)
+        userGuessTextFields.append(sixthGuess)
+    }
     
-  func firstCheck() {
-        if(firstGuess.text == String(correctAnswers[0])) {
-            firstGuess.backgroundColor = UIColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 0.5)
-        } else {
-            firstGuess.backgroundColor = UIColor(red: 0.7, green: 0.2, blue: 0.2, alpha: 0.6)
+    func getUserGuesses() {
+        userGuesses.append(firstGuess.text!)
+        userGuesses.append(secondGuess.text!)
+        userGuesses.append(thirdGuess.text!)
+        userGuesses.append(fourthGuess.text!)
+        userGuesses.append(fifthGuess.text!)
+        userGuesses.append(sixthGuess.text!)
+    }
+    
+    func updateCorrectLabels() {
+        correctLabels.append(firstAnswer)
+        correctLabels.append(secondAnswer)
+        correctLabels.append(thirdAnswer)
+        correctLabels.append(fourthAnswer)
+        correctLabels.append(fifthAnswer)
+        correctLabels.append(sixthAnswer)
+        for index in 0..<6 {
+            correctLabels[index].text = String(correctAnswers[index])
         }
     }
     
-    func secondCheck() {
-        if(secondGuess.text == String(correctAnswers[1])) {
-            secondGuess.backgroundColor = UIColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 0.5)
-        } else {
-            secondGuess.backgroundColor = UIColor(red: 0.7, green: 0.2, blue: 0.2, alpha: 0.6)
+    
+    @IBAction func checkAnswers(_ sender: Any) {
+        //checks users answers with correct answers
+        updateTextFieldArray()
+        getUserGuesses()
+        updateCorrectLabels()
+        for index in 0..<6 {
+            if userGuesses[index] == String(correctAnswers[index]) {
+                userGuessTextFields[index].backgroundColor = UIColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 0.5)
+            } else {
+                userGuessTextFields[index].backgroundColor = UIColor(red: 0.7, green: 0.2, blue: 0.2, alpha: 0.6)
+            }
+            correctLabels[index].isHidden = false
         }
     }
-    
-    func thirdCheck() {
-        if(thirdGuess.text == String(correctAnswers[2])) {
-            thirdGuess.backgroundColor = UIColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 0.5)
-        } else {
-            thirdGuess.backgroundColor = UIColor(red: 0.7, green: 0.2, blue: 0.2, alpha: 0.6)
-        }
-    }
-    
-    func fourthCheck() {
-        if(fourthGuess.text == String(correctAnswers[3])) {
-            fourthGuess.backgroundColor = UIColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 0.5)
-        } else {
-            fourthGuess.backgroundColor = UIColor(red: 0.7, green: 0.2, blue: 0.2, alpha: 0.6)
-        }
-    }
-    
-    func fifthCheck() {
-        if(fifthGuess.text == String(correctAnswers[4])) {
-            fifthGuess.backgroundColor = UIColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 0.5)
-        } else {
-            fifthGuess.backgroundColor = UIColor(red: 0.7, green: 0.2, blue: 0.2, alpha: 0.6)
-        }
-    }
-    
-    func sixthCheck() {
-        if(sixthGuess.text == String(correctAnswers[5])) {
-            sixthGuess.backgroundColor = UIColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 0.5)
-        } else {
-            sixthGuess.backgroundColor = UIColor(red: 0.7, green: 0.2, blue: 0.2, alpha: 0.6)
-        }
-    }
-    
-
-
 
 }
