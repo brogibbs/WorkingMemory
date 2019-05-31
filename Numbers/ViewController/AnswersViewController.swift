@@ -8,12 +8,20 @@
 
 import UIKit
 
+protocol AnswersDelegate {
+    func correctUserAnswers(_ total: Int)
+}
+
 class AnswersViewController: UIViewController {
     var correctAnswers = [Int]()
     var userGuessTextFields = [UITextField]()
     var userGuesses = [String]()
     var correctLabels = [UILabel]()
-
+    var correctGuesses: Int = 0
+    let totalAnswers: Int = 6
+    @IBOutlet weak var playAgainButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
+    
     //user guesses
     @IBOutlet weak var firstGuess: UITextField!
     @IBOutlet weak var secondGuess: UITextField!
@@ -75,11 +83,13 @@ class AnswersViewController: UIViewController {
         for index in 0..<6 {
             if userGuesses[index] == String(correctAnswers[index]) {
                 userGuessTextFields[index].backgroundColor = UIColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 0.5)
+                correctGuesses += 1
             } else {
                 userGuessTextFields[index].backgroundColor = UIColor(red: 0.7, green: 0.2, blue: 0.2, alpha: 0.6)
             }
             correctLabels[index].isHidden = false
         }
+
     }
 
 }
