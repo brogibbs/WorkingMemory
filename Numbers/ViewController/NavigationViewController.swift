@@ -25,24 +25,5 @@ class NavigationViewController: UIViewController {
     @IBAction func viewStatistics(_ sender: Any) {
         performSegue(withIdentifier: "statisticsSegue", sender: self)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "practiceSegue") {
-            var vc = segue.destination as! ViewController
-        } else if(segue.identifier == "statisticsSegue") {
-            var vc = segue.destination as! StatisticsViewController
-        }
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -8,17 +8,15 @@
 
 import UIKit
 
-protocol AnswersDelegate {
-    func correctUserAnswers(_ total: Int)
-}
-
 class AnswersViewController: UIViewController {
     var correctAnswers = [Int]()
     var userGuessTextFields = [UITextField]()
     var userGuesses = [String]()
     var correctLabels = [UILabel]()
     var correctGuesses: Int = 0
-    let totalAnswers: Int = 6
+    let green = UIColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 0.5)
+    let red = UIColor(red: 0.7, green: 0.2, blue: 0.2, alpha: 0.6)
+    //have not been implemented 
     @IBOutlet weak var playAgainButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
@@ -54,12 +52,9 @@ class AnswersViewController: UIViewController {
     }
     
     func getUserGuesses() {
-        userGuesses.append(firstGuess.text!)
-        userGuesses.append(secondGuess.text!)
-        userGuesses.append(thirdGuess.text!)
-        userGuesses.append(fourthGuess.text!)
-        userGuesses.append(fifthGuess.text!)
-        userGuesses.append(sixthGuess.text!)
+        for element in userGuessTextFields {
+            userGuesses.append(element.text!)
+        }
     }
     
     func updateCorrectLabels() {
@@ -69,7 +64,7 @@ class AnswersViewController: UIViewController {
         correctLabels.append(fourthAnswer)
         correctLabels.append(fifthAnswer)
         correctLabels.append(sixthAnswer)
-        for index in 0..<6 {
+        for index in 0..<correctLabels.count {
             correctLabels[index].text = String(correctAnswers[index])
         }
     }
@@ -80,12 +75,12 @@ class AnswersViewController: UIViewController {
         updateTextFieldArray()
         getUserGuesses()
         updateCorrectLabels()
-        for index in 0..<6 {
+        for index in 0..<userGuesses.count {
             if userGuesses[index] == String(correctAnswers[index]) {
-                userGuessTextFields[index].backgroundColor = UIColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 0.5)
+                userGuessTextFields[index].backgroundColor = green
                 correctGuesses += 1
             } else {
-                userGuessTextFields[index].backgroundColor = UIColor(red: 0.7, green: 0.2, blue: 0.2, alpha: 0.6)
+                userGuessTextFields[index].backgroundColor = red
             }
             correctLabels[index].isHidden = false
         }

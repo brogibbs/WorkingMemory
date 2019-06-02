@@ -35,12 +35,7 @@ class ViewController: UIViewController {
     @objc func fireTimer(timer: Timer) {
         if(runCount < maxSecs - 1) {
             currentNumberLabel.text = String(answers[runCount])
-            let utterance = AVSpeechUtterance(string: currentNumberLabel.text!)
-            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-            utterance.rate = voiceRate
-            
-            let synthesizer = AVSpeechSynthesizer()
-            synthesizer.speak(utterance)
+           speechToText()
         }
         runCount += 1
         
@@ -51,6 +46,15 @@ class ViewController: UIViewController {
             print(answers)
             performSegue(withIdentifier: "segue", sender: self)
         }
+    }
+    
+    func speechToText() {
+        let utterance = AVSpeechUtterance(string: currentNumberLabel.text!)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.rate = voiceRate
+        
+        let synthesizer = AVSpeechSynthesizer()
+        synthesizer.speak(utterance)
     }
     
     override func viewDidLoad() {
@@ -72,7 +76,7 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         var vc = segue.destination as! AnswersViewController
-        vc.correctAnswers = self.answers
+       vc.correctAnswers = self.answers
     }
     
     
