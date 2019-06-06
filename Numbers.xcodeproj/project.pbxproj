@@ -14,7 +14,7 @@
 		661F6630229E0CEB00A66A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 661F662E229E0CEB00A66A1C /* LaunchScreen.storyboard */; };
 		661F663C229F4CA800A66A1C /* AnswersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F663B229F4CA800A66A1C /* AnswersViewController.swift */; };
 		661F663F22A05F7400A66A1C /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F663E22A05F7400A66A1C /* NavigationViewController.swift */; };
-		661F664122A0622600A66A1C /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F664022A0622600A66A1C /* StatisticsViewController.swift */; };
+		6674C7C722A60C54000A3961 /* Numbers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6674C7C522A60C54000A3961 /* Numbers.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		661F6631229E0CEB00A66A1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		661F663B229F4CA800A66A1C /* AnswersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersViewController.swift; sourceTree = "<group>"; };
 		661F663E22A05F7400A66A1C /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
-		661F664022A0622600A66A1C /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		6674C7C622A60C54000A3961 /* Numbers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Numbers.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +66,7 @@
 				661F662C229E0CEB00A66A1C /* Assets.xcassets */,
 				661F662E229E0CEB00A66A1C /* LaunchScreen.storyboard */,
 				661F6631229E0CEB00A66A1C /* Info.plist */,
+				6674C7C522A60C54000A3961 /* Numbers.xcdatamodeld */,
 			);
 			path = Numbers;
 			sourceTree = "<group>";
@@ -76,7 +77,6 @@
 				661F663E22A05F7400A66A1C /* NavigationViewController.swift */,
 				661F6627229E0CEA00A66A1C /* ViewController.swift */,
 				661F663B229F4CA800A66A1C /* AnswersViewController.swift */,
-				661F664022A0622600A66A1C /* StatisticsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -153,9 +153,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				661F663F22A05F7400A66A1C /* NavigationViewController.swift in Sources */,
-				661F664122A0622600A66A1C /* StatisticsViewController.swift in Sources */,
 				661F663C229F4CA800A66A1C /* AnswersViewController.swift in Sources */,
 				661F6628229E0CEA00A66A1C /* ViewController.swift in Sources */,
+				6674C7C722A60C54000A3961 /* Numbers.xcdatamodeld in Sources */,
 				661F6626229E0CEA00A66A1C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +354,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6674C7C522A60C54000A3961 /* Numbers.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6674C7C622A60C54000A3961 /* Numbers.xcdatamodel */,
+			);
+			currentVersion = 6674C7C622A60C54000A3961 /* Numbers.xcdatamodel */;
+			path = Numbers.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 661F661A229E0CEA00A66A1C /* Project object */;
 }

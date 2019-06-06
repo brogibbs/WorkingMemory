@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import CoreData
 
 class AnswersViewController: UIViewController {
+    
     var correctAnswers = [Int]()
     var userGuessTextFields = [UITextField]()
     var userGuesses = [String]()
@@ -16,9 +18,7 @@ class AnswersViewController: UIViewController {
     var correctGuesses: Int = 0
     let green = UIColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 0.5)
     let red = UIColor(red: 0.7, green: 0.2, blue: 0.2, alpha: 0.6)
-    //have not been implemented 
-    @IBOutlet weak var playAgainButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var checkAnswersButton: UIButton!
     
     //user guesses
     @IBOutlet weak var firstGuess: UITextField!
@@ -38,7 +38,6 @@ class AnswersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
     
@@ -84,7 +83,39 @@ class AnswersViewController: UIViewController {
             }
             correctLabels[index].isHidden = false
         }
+        checkAnswersButton.isEnabled = false
 
+        //entity set up
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Trials", in: context)
+        let newTrial = NSManagedObject(entity: entity!, insertInto: context)
+        
+        //set values for trial entitiy
+        newTrial.setValue(correctGuesses, forKey: "correctGuesses")
+        newTrial.setValue(correctAnswers.count, forKey: "level")
+        newTrial.setValue(Date(), forKey: "userDate")
+        
+        //save entity data
+        do {
+            try context.save()
+        } catch {
+            print("Failed saving")
+        }
+        
+        //retrieve entity data
+  /*      let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Trials")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                print(data.value(forKey: "userDate") as! Date)
+            }
+            
+        } catch {
+            
+            print("Failed")
+        } */
     }
 
 }
