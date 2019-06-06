@@ -41,13 +41,28 @@
                     <connections>
                         <outlet property="practiceButton" destination="79W-Q4-cKP" id="4aW-x7-PVu"/>
                         <outlet property="viewStatisticsButton" destination="5Rb-wu-3JZ" id="8HX-iA-DGs"/>
-                        <segue destination="2IV-K3-REp" kind="presentation" identifier="statisticsSegue" id="5r5-Ml-N48"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="practiceSegue" id="vaq-h8-2Rp"/>
+                        <segue destination="INH-F5-NNi" kind="presentation" identifier="statisticsSegue" id="O4E-jK-GtF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JfO-nj-Yji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="142" y="393"/>
+            <point key="canvasLocation" x="226" y="454"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Bxg-ZX-hmZ">
+            <objects>
+                <viewController id="INH-F5-NNi" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h6g-gX-8qc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="30T-Fs-8SR"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IqW-NV-Izm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1126" y="842"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -187,60 +202,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5j-OW-AeC">
-                                <rect key="frame" x="135" y="437" width="106" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Play Again"/>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="th3-cj-Un5">
-                                <rect key="frame" x="135" y="475" width="106" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Usl-5X-jHW"/>
                     </view>
                     <connections>
-                        <outlet property="backButton" destination="th3-cj-Un5" id="WB1-sv-pMQ"/>
+                        <outlet property="checkAnswersButton" destination="uHS-Zr-LxX" id="pew-ou-JQ0"/>
                         <outlet property="fifthAnswer" destination="Bhz-Ci-unY" id="XJe-4f-naZ"/>
                         <outlet property="fifthGuess" destination="8FP-12-6Aw" id="iUC-Wn-8GU"/>
                         <outlet property="firstAnswer" destination="3Af-Ng-Fuu" id="vOw-lU-J8N"/>
                         <outlet property="firstGuess" destination="2NY-8V-NGi" id="03W-7D-seh"/>
                         <outlet property="fourthAnswer" destination="28Z-tQ-BAC" id="gY8-xK-eMM"/>
                         <outlet property="fourthGuess" destination="OBV-pf-d2N" id="iuO-c9-3bB"/>
-                        <outlet property="playAgainButton" destination="P5j-OW-AeC" id="bBy-eJ-HmE"/>
                         <outlet property="secondAnswer" destination="bQH-Hs-vgx" id="VGW-Tc-z6L"/>
                         <outlet property="secondGuess" destination="W4T-tK-lPM" id="Dk6-Rp-b3N"/>
                         <outlet property="sixthAnswer" destination="jqQ-kR-C7a" id="hrx-xD-kHl"/>
                         <outlet property="sixthGuess" destination="mKK-Vk-NgI" id="jM2-Ve-jwF"/>
                         <outlet property="thirdAnswer" destination="VpJ-s2-cXJ" id="YMe-cd-OX1"/>
                         <outlet property="thirdGuess" destination="fR3-65-krG" id="4Q0-uO-ohd"/>
-                        <segue destination="aag-eT-dW5" kind="presentation" id="vkT-8E-f9o"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" id="yiD-Hg-y5p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9I-uq-LSo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1978" y="-144"/>
         </scene>
-        <!--Statistics View Controller-->
-        <scene sceneID="HZ8-Ay-Ccz">
-            <objects>
-                <viewController id="2IV-K3-REp" customClass="StatisticsViewController" customModule="Numbers" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bXp-PQ-TNs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="0qD-AR-uFs"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mae-ok-9zX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1126" y="1113"/>
-        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="yiD-Hg-y5p"/>
-    </inferredMetricsTieBreakers>
 </document>
