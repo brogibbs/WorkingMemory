@@ -19,6 +19,7 @@ class AnswersViewController: UIViewController {
     let green = UIColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 0.5)
     let red = UIColor(red: 0.7, green: 0.2, blue: 0.2, alpha: 0.6)
     @IBOutlet weak var checkAnswersButton: UIButton!
+    @IBOutlet weak var backToNavButton: UIButton!
     
     //user guesses
     @IBOutlet weak var firstGuess: UITextField!
@@ -104,7 +105,7 @@ class AnswersViewController: UIViewController {
         }
         
         //retrieve entity data
-  /*      let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Trials")
+     /*   let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Trials")
         request.returnsObjectsAsFaults = false
         do {
             let result = try context.fetch(request)
@@ -117,5 +118,8 @@ class AnswersViewController: UIViewController {
             print("Failed")
         } */
     }
-
+    @IBAction func backToNav(_ sender: UIButton) {
+        performSegue(withIdentifier: "backToNavSegue", sender: self)
+    }
+    
 }
