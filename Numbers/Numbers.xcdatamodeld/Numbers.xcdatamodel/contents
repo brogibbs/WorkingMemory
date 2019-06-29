@@ -5,13 +5,18 @@
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="userDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
+    <entity name="Ex3Trials" representedClassName="Ex3Trials" syncable="YES" codeGenerationType="class">
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
     <entity name="Trials" representedClassName="Trials" syncable="YES" codeGenerationType="class">
         <attribute name="correctGuesses" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="userDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Trials" positionX="-54" positionY="-9" width="128" height="90"/>
         <element name="Ex2Trials" positionX="-54" positionY="18" width="128" height="90"/>
+        <element name="Trials" positionX="-54" positionY="-9" width="128" height="90"/>
+        <element name="Ex3Trials" positionX="-54" positionY="27" width="128" height="75"/>
     </elements>
 </model>
