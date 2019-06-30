@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-// two in a row
+// make circles disappear once it says try again
 class GridViewController: UIViewController {
     
     @IBOutlet weak var box1: UILabel!
@@ -30,7 +30,6 @@ class GridViewController: UIViewController {
     
     var boxList = [UILabel]()
     var boxOrder = [Int]()
-    var level = 4
     @IBOutlet weak var levelLabel: UILabel!
     var tapCount = 0
     var livesLeft = 2
@@ -48,14 +47,14 @@ class GridViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        incorrectLabel.isHidden = true
         super.viewDidLoad()
+        tapGesture1.isEnabled = false
+        incorrectLabel.isHidden = true
         setGrid(color: UIColor.black.cgColor)
         setArray()
+        setBoxOrder()
         setLevel()
-        tapGesture1.isEnabled = false
-        preStart()
-        start()
+        runNextLevel()
 
     }
     
@@ -98,35 +97,35 @@ class GridViewController: UIViewController {
     }
     
     func setLevel() {
-      levelLabel.text = "Level " + String(level - 3)
+      levelLabel.text = "Level " + String(boxOrder.count - 2)
     }
     
-    func preStart() {
+    func getRandomBoxNum() -> Int {
+        var randomNum = Int.random(in: 0 ..< boxList.count)
+        while(boxOrder.count > 0 && randomNum == boxOrder[boxOrder.count - 1]) {
+            randomNum = Int.random(in: 0 ..< boxList.count)
+            
+        }
+        return randomNum
+    }
+        
+    
+    func setBoxOrder() {
         for index in 0...2 {
-            var randomNum = Int.random(in: 0 ..< boxList.count)
-            if(boxOrder.count > 0) {
-                while(randomNum == boxOrder[boxOrder.count - 1]) {
-                    randomNum = Int.random(in: 0 ..< boxList.count)
-                }
-            }
-            boxOrder.append(randomNum)
+            boxOrder.append(getRandomBoxNum())
         }
     }
     
     
-    func start() {
-        var randomNum = Int.random(in: 0 ..< boxList.count)
-            if(boxOrder.count > 0) {
-                while(randomNum == boxOrder[boxOrder.count - 1]) {
-                    randomNum = Int.random(in: 0 ..< boxList.count)
-                }
-            }
-            boxOrder.append(randomNum)
-        showCircles()
+    func runNextLevel() {
+        boxOrder.append(getRandomBoxNum())
+        runLevel()
     }
     
     
-    func showCircles(fromIndex index: Int = 0) {
+    func runLevel(fromIndex index: Int = 0) {
+        tapCount = 0
+        setLevel()
         self.view.isUserInteractionEnabled = false
         incorrectLabel.isHidden = true
         guard index < boxOrder.count else {
@@ -136,12 +135,23 @@ class GridViewController: UIViewController {
         boxList[boxOrder[index]].text = "O"
         DispatchQueue.main.asyncAfter(deadline: .now() + secs) {
             self.boxList[self.boxOrder[index]].text = ""
-            
         }
-        
         Timer.scheduledTimer(withTimeInterval: secs, repeats: false) { _ in
-            self.showCircles(fromIndex: index+1)
+            self.runLevel(fromIndex: index+1)
         }
+    }
+    
+    func showUserGuess(userGuess: Int) {
+        boxList[userGuess].textColor = UIColor.red
+        boxList[userGuess].text = "O"
+        DispatchQueue.main.asyncAfter(deadline: .now() + secs) {
+            self.boxList[userGuess].text = ""
+            self.boxList[userGuess].textColor = UIColor.black
+        }
+    }
+    
+    func isCorrectGuess(userGuess: Int) -> Bool {
+        return userGuess == boxOrder[tapCount]
     }
     
 
@@ -149,18 +159,11 @@ class GridViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         incorrectLabel.isHidden = true
         let touch: UITouch = touches.first as! UITouch
-        if(tapCount < level) {
-            var userGuess = getCorrectBoxWithCorrdinates(touchPoint: touch.location(in: view))
-            boxList[userGuess].textColor = UIColor.red
-            boxList[userGuess].text = "O"
-            DispatchQueue.main.asyncAfter(deadline: .now() + secs) {
-                self.boxList[userGuess].text = ""
-                self.boxList[userGuess].textColor = UIColor.black
-            }
-            if(userGuess == boxOrder[tapCount]) {
-                if(tapCount == boxOrder.count - 1) {
+        if(tapCount < boxOrder.count) {
+            var userBoxGuess = getCorrectBoxWithCorrdinates(touchPoint: touch.location(in: view))
+            showUserGuess(userGuess: userBoxGuess)
+            if(isCorrectGuess(userGuess: userBoxGuess)) {
                     livesLeft = 2
-                }
             } else {
                 livesLeft -= 1
                 incorrectLabel.isHidden = false
@@ -168,6 +171,7 @@ class GridViewController: UIViewController {
                     quitGame()
                 } else {
                     for box in boxList {
+                        //clear grid
                         setGrid(color: UIColor.white.cgColor)
                         box.backgroundColor = UIColor.white
                     }
@@ -175,18 +179,14 @@ class GridViewController: UIViewController {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         self.setGrid(color: UIColor.black.cgColor)
                         self.incorrectLabel.isHidden = false
-                        self.showCircles()
+                        self.runLevel()
                     }
                 }
             }
-            
         }
-        if(tapCount == level - 1) {
+        if(tapCount == boxOrder.count - 1) {
            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.tapCount = 0
-            self.level += 1
-            self.setLevel()
-            self.start()
+            self.runNextLevel()
             }
         }
         tapCount += 1
@@ -277,7 +277,7 @@ class GridViewController: UIViewController {
         let newTrial = NSManagedObject(entity: entity!, insertInto: context)
         
         //set values for trial entitiy
-        newTrial.setValue(level, forKey: "level")
+        newTrial.setValue(boxOrder.count - 1, forKey: "level")
         newTrial.setValue(Date(), forKey: "userDate")
         
         //save entity data
