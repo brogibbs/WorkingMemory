@@ -27,7 +27,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rb-wu-3JZ">
-                                <rect key="frame" x="137" y="281" width="101" height="52"/>
+                                <rect key="frame" x="137" y="362" width="101" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="View Statistics"/>
                                 <connections>
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7To-E1-3fy">
-                                <rect key="frame" x="137" y="353" width="101" height="36"/>
+                                <rect key="frame" x="137" y="403" width="101" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Settings"/>
                                 <connections>
@@ -50,12 +50,21 @@
                                     <action selector="startExTwo:" destination="aag-eT-dW5" eventType="touchUpInside" id="Mih-1c-83p"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgZ-Hb-8SF">
+                                <rect key="frame" x="137" y="286" width="101" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Ex 3"/>
+                                <connections>
+                                    <action selector="startExThree:" destination="aag-eT-dW5" eventType="touchUpInside" id="yH2-Au-34t"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="oJd-oF-wYz"/>
                     </view>
                     <connections>
                         <outlet property="ex2Button" destination="VCo-rJ-g4P" id="PTo-hU-SPt"/>
+                        <outlet property="ex3Button" destination="EgZ-Hb-8SF" id="paE-yO-vbU"/>
                         <outlet property="practiceButton" destination="79W-Q4-cKP" id="4aW-x7-PVu"/>
                         <outlet property="settingsButton" destination="7To-E1-3fy" id="yEY-Jm-zBp"/>
                         <outlet property="viewStatisticsButton" destination="5Rb-wu-3JZ" id="8HX-iA-DGs"/>
@@ -63,11 +72,12 @@
                         <segue destination="E1R-62-bd0" kind="presentation" identifier="statisticsSegue" id="Jhj-rw-Ixh"/>
                         <segue destination="tnE-dC-agN" kind="presentation" identifier="settingsSegue" id="LCz-EU-goI"/>
                         <segue destination="ByF-4W-OSu" kind="presentation" identifier="ex2Segue" id="TT0-xa-BZi"/>
+                        <segue destination="zg8-AN-V0A" kind="presentation" identifier="ex3Segue" id="na2-Pn-vg1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JfO-nj-Yji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1650" y="247"/>
+            <point key="canvasLocation" x="-1650.4000000000001" y="246.9265367316342"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="vpF-cY-046">
@@ -236,6 +246,14 @@
                                     <action selector="backToNav:" destination="E1R-62-bd0" eventType="touchUpInside" id="an5-RN-zYf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fno-nk-XO5">
+                                <rect key="frame" x="153" y="318" width="69" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Ex 3 Stats"/>
+                                <connections>
+                                    <action selector="getEx3Stats:" destination="E1R-62-bd0" eventType="touchUpInside" id="ZC7-ay-LpZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="CFs-Fs-p5f"/>
@@ -244,6 +262,7 @@
                         <outlet property="backButton" destination="KUY-A2-wNK" id="YAh-OY-Phk"/>
                         <outlet property="ex1Button" destination="yG2-eq-8uw" id="1J0-7v-RCl"/>
                         <outlet property="ex2Button" destination="aZs-Kc-F1m" id="Csz-oh-BKs"/>
+                        <outlet property="ex3Button" destination="Fno-nk-XO5" id="zoq-TW-fMB"/>
                         <outlet property="textScrollLabel" destination="yFJ-dY-hEu" id="z0T-yT-pLL"/>
                         <segue destination="aag-eT-dW5" kind="presentation" identifier="statsToNav" id="dLF-cQ-w5m"/>
                     </connections>
@@ -326,6 +345,218 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JeQ-z3-KsI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-162.40000000000001" y="246.9265367316342"/>
+        </scene>
+        <!--Grid View Controller-->
+        <scene sceneID="OXE-gi-CNj">
+            <objects>
+                <viewController id="zg8-AN-V0A" customClass="GridViewController" customModule="Numbers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hnx-vc-7oU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="por-Y9-HGT">
+                                <rect key="frame" x="0.0" y="20" width="125" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="57"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="O8G-aR-QPk" appends="YES" id="jg9-7b-MqW"/>
+                                </connections>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJz-lL-8rx">
+                                <rect key="frame" x="125" y="20" width="125" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="57"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDb-Sl-gcS">
+                                <rect key="frame" x="250" y="20" width="125" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="57"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ade-6j-W6e">
+                                <rect key="frame" x="0.0" y="182" width="125" height="161.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="57"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMt-Wi-86C">
+                                <rect key="frame" x="125" y="182" width="125" height="161.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="57"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4m4-71-fjL">
+                                <rect key="frame" x="250" y="182" width="125" height="161.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="57"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ale-Aq-GJq">
+                                <rect key="frame" x="0.0" y="343.5" width="125" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="57"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dd0-GF-Rsm">
+                                <rect key="frame" x="125" y="343.5" width="125" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="57"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhB-7Y-Gtu">
+                                <rect key="frame" x="250" y="343.5" width="125" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="57"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JmB-hn-L1p">
+                                <rect key="frame" x="0.0" y="505.5" width="125" height="161.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="57"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXs-lE-RUy">
+                                <rect key="frame" x="125" y="505.5" width="125" height="161.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="57"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syx-cb-lcL">
+                                <rect key="frame" x="250" y="505.5" width="125" height="161.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="57"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Level" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upJ-Sl-iNo">
+                                <rect key="frame" x="125" y="44" width="125" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TRY AGAIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGO-TC-tZF">
+                                <rect key="frame" x="144" y="314" width="86" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="syx-cb-lcL" firstAttribute="height" secondItem="por-Y9-HGT" secondAttribute="height" id="0xa-gA-Fc5"/>
+                            <constraint firstItem="uXs-lE-RUy" firstAttribute="leading" secondItem="JmB-hn-L1p" secondAttribute="trailing" id="21c-Dv-ZTo"/>
+                            <constraint firstItem="hDb-Sl-gcS" firstAttribute="height" secondItem="por-Y9-HGT" secondAttribute="height" id="2BM-Wv-4Gx"/>
+                            <constraint firstItem="Dd0-GF-Rsm" firstAttribute="height" secondItem="por-Y9-HGT" secondAttribute="height" id="2w7-l0-moG"/>
+                            <constraint firstItem="F23-xo-qRz" firstAttribute="trailing" secondItem="hDb-Sl-gcS" secondAttribute="trailing" id="2xA-0b-s0p"/>
+                            <constraint firstItem="wMt-Wi-86C" firstAttribute="width" secondItem="por-Y9-HGT" secondAttribute="width" id="3cY-BF-PMe"/>
+                            <constraint firstItem="4m4-71-fjL" firstAttribute="leading" secondItem="wMt-Wi-86C" secondAttribute="trailing" id="6Oh-qJ-GZ7"/>
+                            <constraint firstItem="por-Y9-HGT" firstAttribute="top" secondItem="F23-xo-qRz" secondAttribute="top" id="ASR-Mb-iB1"/>
+                            <constraint firstItem="Ale-Aq-GJq" firstAttribute="height" secondItem="por-Y9-HGT" secondAttribute="height" id="Bri-bS-Grg"/>
+                            <constraint firstItem="ade-6j-W6e" firstAttribute="leading" secondItem="F23-xo-qRz" secondAttribute="leading" id="Cbj-nH-Hl2"/>
+                            <constraint firstItem="Ale-Aq-GJq" firstAttribute="top" secondItem="ade-6j-W6e" secondAttribute="bottom" id="Dsk-fs-4vj"/>
+                            <constraint firstItem="4m4-71-fjL" firstAttribute="top" secondItem="hDb-Sl-gcS" secondAttribute="bottom" id="Dvx-VQ-5hn"/>
+                            <constraint firstItem="hDb-Sl-gcS" firstAttribute="leading" secondItem="xJz-lL-8rx" secondAttribute="trailing" id="F2S-qP-13M"/>
+                            <constraint firstItem="uXs-lE-RUy" firstAttribute="width" secondItem="por-Y9-HGT" secondAttribute="width" id="Iyi-Fu-Smc"/>
+                            <constraint firstItem="F23-xo-qRz" firstAttribute="bottom" secondItem="uXs-lE-RUy" secondAttribute="bottom" id="KAK-Jr-THS"/>
+                            <constraint firstItem="wMt-Wi-86C" firstAttribute="height" secondItem="por-Y9-HGT" secondAttribute="height" id="L4W-oM-5C9"/>
+                            <constraint firstItem="ade-6j-W6e" firstAttribute="height" secondItem="por-Y9-HGT" secondAttribute="height" id="NUh-mF-gjH"/>
+                            <constraint firstItem="F23-xo-qRz" firstAttribute="bottom" secondItem="syx-cb-lcL" secondAttribute="bottom" id="OMY-Ms-0kR"/>
+                            <constraint firstItem="JmB-hn-L1p" firstAttribute="leading" secondItem="F23-xo-qRz" secondAttribute="leading" id="QUk-Ed-MiB"/>
+                            <constraint firstItem="wMt-Wi-86C" firstAttribute="top" secondItem="xJz-lL-8rx" secondAttribute="bottom" id="SzV-Vg-Zpm"/>
+                            <constraint firstItem="Dd0-GF-Rsm" firstAttribute="leading" secondItem="Ale-Aq-GJq" secondAttribute="trailing" id="XAc-dV-znp"/>
+                            <constraint firstItem="hDb-Sl-gcS" firstAttribute="top" secondItem="F23-xo-qRz" secondAttribute="top" id="XqP-FN-kUM"/>
+                            <constraint firstItem="syx-cb-lcL" firstAttribute="width" secondItem="por-Y9-HGT" secondAttribute="width" id="ZHE-gF-dqb"/>
+                            <constraint firstItem="4m4-71-fjL" firstAttribute="width" secondItem="por-Y9-HGT" secondAttribute="width" id="ZL7-9V-4UU"/>
+                            <constraint firstItem="xJz-lL-8rx" firstAttribute="leading" secondItem="por-Y9-HGT" secondAttribute="trailing" id="Zq2-qT-qac"/>
+                            <constraint firstItem="JmB-hn-L1p" firstAttribute="height" secondItem="por-Y9-HGT" secondAttribute="height" id="bMh-o2-Rzm"/>
+                            <constraint firstItem="syx-cb-lcL" firstAttribute="top" secondItem="fhB-7Y-Gtu" secondAttribute="bottom" id="bNd-Pq-san"/>
+                            <constraint firstItem="JmB-hn-L1p" firstAttribute="top" secondItem="Ale-Aq-GJq" secondAttribute="bottom" id="cDh-Jm-2AS"/>
+                            <constraint firstItem="fhB-7Y-Gtu" firstAttribute="height" secondItem="por-Y9-HGT" secondAttribute="height" id="chR-nc-xwc"/>
+                            <constraint firstItem="JmB-hn-L1p" firstAttribute="width" secondItem="por-Y9-HGT" secondAttribute="width" id="d5E-0p-awP"/>
+                            <constraint firstItem="Dd0-GF-Rsm" firstAttribute="top" secondItem="wMt-Wi-86C" secondAttribute="bottom" id="dIV-ok-x8D"/>
+                            <constraint firstItem="fhB-7Y-Gtu" firstAttribute="width" secondItem="por-Y9-HGT" secondAttribute="width" id="dsR-dY-FnC"/>
+                            <constraint firstItem="ade-6j-W6e" firstAttribute="top" secondItem="por-Y9-HGT" secondAttribute="bottom" id="e0u-FO-z4U"/>
+                            <constraint firstItem="F23-xo-qRz" firstAttribute="trailing" secondItem="syx-cb-lcL" secondAttribute="trailing" id="etf-b4-Nmf"/>
+                            <constraint firstItem="Ale-Aq-GJq" firstAttribute="width" secondItem="por-Y9-HGT" secondAttribute="width" id="f7P-7P-vTj"/>
+                            <constraint firstItem="uXs-lE-RUy" firstAttribute="height" secondItem="por-Y9-HGT" secondAttribute="height" id="fr3-pb-eIm"/>
+                            <constraint firstItem="uXs-lE-RUy" firstAttribute="top" secondItem="Dd0-GF-Rsm" secondAttribute="bottom" id="fzS-6G-a1M"/>
+                            <constraint firstItem="fhB-7Y-Gtu" firstAttribute="leading" secondItem="Dd0-GF-Rsm" secondAttribute="trailing" id="gk1-wB-wcJ"/>
+                            <constraint firstItem="por-Y9-HGT" firstAttribute="leading" secondItem="F23-xo-qRz" secondAttribute="leading" id="ijY-BW-to7"/>
+                            <constraint firstItem="syx-cb-lcL" firstAttribute="leading" secondItem="uXs-lE-RUy" secondAttribute="trailing" id="lHb-1f-zKi"/>
+                            <constraint firstItem="F23-xo-qRz" firstAttribute="bottom" secondItem="JmB-hn-L1p" secondAttribute="bottom" id="oLe-Py-Ikm"/>
+                            <constraint firstItem="hDb-Sl-gcS" firstAttribute="width" secondItem="por-Y9-HGT" secondAttribute="width" id="qFQ-3k-j6Q"/>
+                            <constraint firstItem="Dd0-GF-Rsm" firstAttribute="width" secondItem="por-Y9-HGT" secondAttribute="width" id="qSS-3j-Xpn"/>
+                            <constraint firstItem="wMt-Wi-86C" firstAttribute="leading" secondItem="ade-6j-W6e" secondAttribute="trailing" id="rJb-gy-ZXG"/>
+                            <constraint firstItem="xJz-lL-8rx" firstAttribute="height" secondItem="por-Y9-HGT" secondAttribute="height" id="rSX-BO-T2S"/>
+                            <constraint firstItem="xJz-lL-8rx" firstAttribute="width" secondItem="por-Y9-HGT" secondAttribute="width" id="twC-sX-Gdc"/>
+                            <constraint firstItem="ade-6j-W6e" firstAttribute="width" secondItem="por-Y9-HGT" secondAttribute="width" id="txt-dl-hVM"/>
+                            <constraint firstItem="F23-xo-qRz" firstAttribute="trailing" secondItem="fhB-7Y-Gtu" secondAttribute="trailing" id="u8V-zl-KXe"/>
+                            <constraint firstItem="fhB-7Y-Gtu" firstAttribute="top" secondItem="4m4-71-fjL" secondAttribute="bottom" id="v8L-Ad-Qsl"/>
+                            <constraint firstItem="4m4-71-fjL" firstAttribute="height" secondItem="por-Y9-HGT" secondAttribute="height" id="vFG-zm-CX6"/>
+                            <constraint firstItem="Ale-Aq-GJq" firstAttribute="leading" secondItem="F23-xo-qRz" secondAttribute="leading" id="wdE-0W-NeP"/>
+                            <constraint firstItem="xJz-lL-8rx" firstAttribute="top" secondItem="F23-xo-qRz" secondAttribute="top" id="x78-aY-Eew"/>
+                            <constraint firstItem="F23-xo-qRz" firstAttribute="trailing" secondItem="4m4-71-fjL" secondAttribute="trailing" id="xOD-mZ-dhI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="F23-xo-qRz"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="O8G-aR-QPk" appends="YES" id="1db-4K-fRH"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="box1" destination="por-Y9-HGT" id="C6T-ck-ZGM"/>
+                        <outlet property="box10" destination="JmB-hn-L1p" id="IYX-1q-9ii"/>
+                        <outlet property="box11" destination="uXs-lE-RUy" id="c7W-dq-pDM"/>
+                        <outlet property="box12" destination="syx-cb-lcL" id="7qN-s9-rW7"/>
+                        <outlet property="box2" destination="xJz-lL-8rx" id="dyq-GC-Ea6"/>
+                        <outlet property="box3" destination="hDb-Sl-gcS" id="ASI-ey-6hg"/>
+                        <outlet property="box4" destination="ade-6j-W6e" id="aEP-zP-X2V"/>
+                        <outlet property="box5" destination="wMt-Wi-86C" id="AIk-6E-ANa"/>
+                        <outlet property="box6" destination="4m4-71-fjL" id="IFH-eJ-Ol3"/>
+                        <outlet property="box7" destination="Ale-Aq-GJq" id="xri-Ww-dwz"/>
+                        <outlet property="box8" destination="Dd0-GF-Rsm" id="AXm-Bf-6At"/>
+                        <outlet property="box9" destination="fhB-7Y-Gtu" id="L9l-YF-2oo"/>
+                        <outlet property="incorrectLabel" destination="UGO-TC-tZF" id="oC8-Kt-7RM"/>
+                        <outlet property="levelLabel" destination="upJ-Sl-iNo" id="D0s-Dv-gBl"/>
+                        <outlet property="tapGesture1" destination="O8G-aR-QPk" id="Nbo-ek-Fcx"/>
+                        <segue destination="aag-eT-dW5" kind="presentation" identifier="returnHome" id="ocH-GR-6s6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w03-Iv-g4g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer enabled="NO" id="O8G-aR-QPk">
+                    <connections>
+                        <action selector="addFirstBox:" destination="zg8-AN-V0A" id="HEv-Vq-zdL"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-162.40000000000001" y="1148.2758620689656"/>
         </scene>
         <!--Circle View Controller-->
         <scene sceneID="dKC-qB-qo5">

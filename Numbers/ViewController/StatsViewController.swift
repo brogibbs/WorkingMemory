@@ -14,6 +14,7 @@ class StatsViewController: UIViewController {
     @IBOutlet weak var textScrollLabel: UITextView!
     @IBOutlet weak var ex1Button: UIButton!
     @IBOutlet weak var ex2Button: UIButton!
+    @IBOutlet weak var ex3Button: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
     
@@ -24,6 +25,7 @@ class StatsViewController: UIViewController {
     @IBAction func getEx1Stats(_ sender: Any) {
         ex1Button.isHidden = true
         ex2Button.isHidden = true
+        ex3Button.isHidden = true
         textScrollLabel.isEditable = false
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -57,6 +59,7 @@ class StatsViewController: UIViewController {
     @IBAction func getEx2Stats(_ sender: Any) {
         ex1Button.isHidden = true
         ex2Button.isHidden = true
+        ex3Button.isHidden = true
         textScrollLabel.isEditable = false
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -90,9 +93,43 @@ class StatsViewController: UIViewController {
         }
         backButton.isHidden = false
     }
+    
+    @IBAction func getEx3Stats(_ sender: Any) {
+        ex1Button.isHidden = true
+        ex2Button.isHidden = true
+        ex3Button.isHidden = true
+        textScrollLabel.isEditable = false
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Ex3Trials")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                
+                dataText += ("DATE: ")
+                var userDate: Date = data.value(forKey: "userDate") as! Date
+                dataText += (userDate.asString(style: .medium))
+                dataText += ("\n")
+                dataText += ("CIRCLES SHOWN:  ")
+                dataText += String(data.value(forKey: "level") as! Int)
+                dataText += ("\n")
+                dataText += ("\n")
+                dataText += ("\n")
+            }
+            textScrollLabel.text = dataText
+            dataText += ("\n")
+            
+        } catch {
+            print("Failed")
+        }
+        backButton.isHidden = false
+    }
+    
     @IBAction func backToNav(_ sender: Any) {
         performSegue(withIdentifier: "statsToNav", sender: self)
     }
+    
 }
 
 extension Date {

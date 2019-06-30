@@ -21,7 +21,7 @@ class Ex2ViewController: UIViewController {
     let secs = 1.5
     let maxSecs: Int = 7
     var runCount: Int = 0
-    let voiceRate: Float = 0.51
+    let voiceRate: Float = 0.49
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +65,7 @@ class Ex2ViewController: UIViewController {
     }
     
     func speechToText() {
-        let utterance = AVSpeechUtterance(string: randomLetterText.text!)
+        let utterance = AVSpeechUtterance(string: randomLetterText.text!.lowercased())
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         utterance.rate = voiceRate
         

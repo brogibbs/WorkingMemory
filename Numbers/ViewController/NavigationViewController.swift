@@ -14,6 +14,7 @@ class NavigationViewController: UIViewController {
     @IBOutlet weak var viewStatisticsButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var ex2Button: UIButton!
+    @IBOutlet weak var ex3Button: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,9 @@ class NavigationViewController: UIViewController {
         performSegue(withIdentifier: "ex2Segue", sender: self)
     }
     
+    @IBAction func startExThree(_ sender: Any) {
+        performSegue(withIdentifier: "ex3Segue", sender: self)
+    }
     
 
 }
