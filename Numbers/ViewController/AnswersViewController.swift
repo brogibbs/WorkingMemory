@@ -8,10 +8,9 @@
 import UIKit
 import CoreData
 
-class AnswersViewController: UIViewController {
+class AnswersViewController: UIViewController, UITextFieldDelegate {
     
     var correctAnswers = [Int]()
-    var userGuessTextFields = [UITextField]()
     var userGuesses = [String]()
     var correctLabels = [UILabel]()
     var correctGuesses: Int = 0
@@ -29,11 +28,6 @@ class AnswersViewController: UIViewController {
     
     //user guesse
     @IBOutlet weak var firstGuess: UITextField!
-    @IBOutlet weak var secondGuess: UITextField!
-    @IBOutlet weak var thirdGuess: UITextField!
-    @IBOutlet weak var fourthGuess: UITextField!
-    @IBOutlet weak var fifthGuess: UITextField!
-    @IBOutlet weak var sixthGuess: UITextField!
     
     //correct answers
 
@@ -57,12 +51,16 @@ class AnswersViewController: UIViewController {
         createAnswerArray()
         firstGuess.becomeFirstResponder()
         firstGuess.borderStyle = UITextField.BorderStyle.roundedRect
-        secondGuess.borderStyle = UITextField.BorderStyle.roundedRect
-        thirdGuess.borderStyle = UITextField.BorderStyle.roundedRect
-        fourthGuess.borderStyle = UITextField.BorderStyle.roundedRect
-        fifthGuess.borderStyle = UITextField.BorderStyle.roundedRect
-        sixthGuess.borderStyle = UITextField.BorderStyle.roundedRect
-        // Do any additional setup after loading the view.
+        self.firstGuess.addTarget(self, action: #selector(onReturn), for: UIControl.Event.editingDidEndOnExit)
+        //init toolbar
+        let toolbar:UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
+        //create left side empty space so that done button set on right side
+        let flexSpace = UIBarButtonItem(barButtonSystemItem:    .flexibleSpace, target: nil, action: nil)
+        let doneBtn: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(onReturn))
+        toolbar.setItems([flexSpace, doneBtn], animated: false)
+        toolbar.sizeToFit()
+        //setting toolbar as inputAccessoryView
+        self.firstGuess.inputAccessoryView = toolbar
     }
     
     func createAnswerArray() {
@@ -74,17 +72,9 @@ class AnswersViewController: UIViewController {
         correctAnswerArray.append(correct6)
     }
     
-    func updateTextFieldArray() {
-        userGuessTextFields.append(firstGuess)
-        userGuessTextFields.append(secondGuess)
-        userGuessTextFields.append(thirdGuess)
-        userGuessTextFields.append(fourthGuess)
-        userGuessTextFields.append(fifthGuess)
-        userGuessTextFields.append(sixthGuess) 
-    }
-    
     func getUserGuesses() {
-        userGuesses.append(userGuessTextFields[count].text!)
+        userGuesses.append(firstGuess.text!)
+        firstGuess.text = ""
     }
     
     func updateCorrectLabels() {
@@ -104,17 +94,26 @@ class AnswersViewController: UIViewController {
             correctLabels[index].text = String(userGuesses[index])
         }
     }
+
     
     @IBAction func submitGuess(_ sender: Any) {
-        updateTextFieldArray()
         getUserGuesses()
         updateCorrectLabels()
         correctLabels[count].isHidden = false
-        userGuessTextFields[count].isHidden = true
         count += 1
-        userGuessTextFields[count].becomeFirstResponder()
-        if(count < 6) {
-            userGuessTextFields[count].isHidden = false
+    }
+    
+    @IBAction func onReturn(_ sender: Any) {
+        self.firstGuess.resignFirstResponder()
+        var num = Int(firstGuess.text!)
+        if(num != nil) {
+            submitGuess(sender)
+        }
+        if(count < correctAnswerArray.count) {
+           self.firstGuess.becomeFirstResponder()
+        } else {
+            self.firstGuess.endEditing(true)
+            self.firstGuess.isEnabled = false
         }
     }
     
@@ -134,6 +133,8 @@ class AnswersViewController: UIViewController {
         }
         nextButton.isHidden = false
         checkAnswersButton.isEnabled = false
+        checkAnswersButton.isHidden = true
+        checkAnswersLabel.isHidden = true
         
         //entity set up
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

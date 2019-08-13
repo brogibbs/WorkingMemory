@@ -39,9 +39,10 @@ class CircleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         letterTextField.borderStyle = UITextField.BorderStyle.roundedRect
-        letterTextField.becomeFirstResponder()
+       // letterTextField.becomeFirstResponder()
         setPuzzleArray()
         highlightImage()
+        self.letterTextField.addTarget(self, action: #selector(onReturn), for: UIControl.Event.editingDidEndOnExit)
     }
     
     func setPuzzleArray() {
@@ -62,6 +63,10 @@ class CircleViewController: UIViewController {
         submitLabel.isHidden = false
     }
     
+    @IBAction func onReturn(_ sender: Any) {
+        self.letterTextField.resignFirstResponder()
+        checkAnswers(sender)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         var vc = segue.destination as! InstructionsViewController
@@ -75,8 +80,9 @@ class CircleViewController: UIViewController {
         } else {
             letterTextField.backgroundColor = UIColor(red:0.81, green:0.53, blue:0.63, alpha:1.0)
         }
-        submitLabel.isHidden = false
+        submitLabel.isHidden = true
         submitButton.isEnabled = false
+        submitButton.isHidden = true
         nextButton.isHidden = false
         correctLabel.text = letters[randomNum]
         correctLabel.isHidden = false
