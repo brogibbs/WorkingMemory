@@ -9,21 +9,25 @@
 import UIKit
 
 class NavigationViewController: UIViewController {
-
+    
     @IBOutlet weak var practiceButton: UIButton!
-    @IBOutlet weak var viewStatisticsButton: UIButton!
-    @IBOutlet weak var settingsButton: UIButton!
-    @IBOutlet weak var ex2Button: UIButton!
-    @IBOutlet weak var ex3Button: UIButton!
+    @IBOutlet weak var logoImage: UIImageView!
+    @IBOutlet weak var mainBrainImage: UIImageView!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "startSegue") {
+            var vc = segue.destination as! InstructionsViewController
+            vc.index = 1
+        }
     }
     
     @IBAction func startPractice(_ sender: Any) {
-        performSegue(withIdentifier: "practiceSegue", sender: self)    }
+        performSegue(withIdentifier: "startSegue", sender: self)    }
     
     @IBAction func viewStatistics(_ sender: Any) {
         performSegue(withIdentifier: "statisticsSegue", sender: self)
@@ -31,14 +35,6 @@ class NavigationViewController: UIViewController {
     
     @IBAction func viewSettings(_ sender: Any) {
         performSegue(withIdentifier: "settingsSegue", sender: self)
-    }
-    
-    @IBAction func startExTwo(_ sender: Any) {
-        performSegue(withIdentifier: "ex2Segue", sender: self)
-    }
-    
-    @IBAction func startExThree(_ sender: Any) {
-        performSegue(withIdentifier: "ex3Segue", sender: self)
     }
     
 

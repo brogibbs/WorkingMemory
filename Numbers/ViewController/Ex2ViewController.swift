@@ -11,11 +11,9 @@ import AVFoundation
 
 class Ex2ViewController: UIViewController {
 
-    @IBOutlet weak var beginButton: UIButton!
     @IBOutlet weak var randomLetterText: UILabel!
     
     let uppercaseLetters = (65...90).map {String(UnicodeScalar($0))}
-    
     let arraySize: Int = 6
     var answers = [String]()
     let secs = 1.5
@@ -26,6 +24,7 @@ class Ex2ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setAnswers()
+        startLetters()
     }
     
     func randomLetter() -> String {
@@ -42,12 +41,10 @@ class Ex2ViewController: UIViewController {
             answers.append(temp)
             count = count + 1
         }
-        print(answers)
     }
     
-    @IBAction func startLetters(_ sender: Any) {
+    func startLetters() {
         let timer1 = Timer.scheduledTimer(timeInterval: secs, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
-        beginButton.isHidden = true
     }
     
     @objc func fireTimer(timer: Timer) {
