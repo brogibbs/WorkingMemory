@@ -12,74 +12,74 @@ import CoreData
 
 class CircleViewController: UIViewController {
     
-    
+    var puzzleImageArray: [UIImageView] = []
     @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var textLabel2: UILabel!
     @IBOutlet weak var letterTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var submitLabel: UILabel!
     
     let circleRadius: CGFloat = 25
     let width: CGFloat = 40
-    var randomNum = Int.random(in: 1 ..< 7)
+    var randomNum = Int.random(in: 0 ..< 6)
     var letters = [String]()
     var didGuess = false
     var maxCircles: CGFloat = 6
-
+    @IBOutlet weak var correctLabel: UILabel!
+    
+    @IBOutlet weak var whitePieces: UIImageView!
+    @IBOutlet weak var blackPiece1: UIImageView!
+    @IBOutlet weak var blackPiece2: UIImageView!
+    @IBOutlet weak var blackPiece3: UIImageView!
+    @IBOutlet weak var blackPiece4: UIImageView!
+    @IBOutlet weak var blackPiece5: UIImageView!
+    @IBOutlet weak var blackPiece6: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        createCirles()
+        letterTextField.borderStyle = UITextField.BorderStyle.roundedRect
+        letterTextField.becomeFirstResponder()
+        setPuzzleArray()
+        highlightImage()
     }
     
-    public var screenWidth: CGFloat {
-       return UIScreen.main.bounds.width
+    func setPuzzleArray() {
+        puzzleImageArray.append(blackPiece1)
+        puzzleImageArray.append(blackPiece2)
+        puzzleImageArray.append(blackPiece3)
+        puzzleImageArray.append(blackPiece4)
+        puzzleImageArray.append(blackPiece5)
+        puzzleImageArray.append(blackPiece6)
     }
     
-    // Screen height.
-    public var screenHeight: CGFloat {
-        return UIScreen.main.bounds.height
-    }
-    
-    func createCirles() {
-        var circleCenter = CGPoint(x: self.screenWidth - circleRadius, y: self.screenHeight / 2 - circleRadius)
-        var num: CGFloat = 0
-        while(num <= maxCircles) {
-            if(num == 0) {
-                circleCenter = CGPoint(x: self.screenWidth - circleRadius * 2, y: self.screenHeight / 2 - circleRadius)
-            } else {
-                circleCenter = CGPoint(x: self.screenWidth / 6  *  num - circleRadius * 2, y: self.screenHeight / 2 - circleRadius)
-            }
-         
-         // Set a random Circle Radius
-         // 2
-         let circleWidth = width
-         let circleHeight = circleWidth
-         
-         // Create a new CircleView
-         // 3
-         let circleView = CircleView(frame: CGRect(x: circleCenter.x, y: circleCenter.y, width: circleWidth, height: circleHeight))
-            
-         if(Int(num) == randomNum) {
-            circleView.backgroundColor = UIColor.green
-         }
-         view.addSubview(circleView)
-         num += 1
-        }
+    func highlightImage() {
+        puzzleImageArray[randomNum].isHidden = false
         letterTextField.isHidden = false
         textLabel.isHidden = false
+        textLabel2.isHidden = false
         submitButton.isHidden = false
+        submitLabel.isHidden = false
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var vc = segue.destination as! InstructionsViewController
+        vc.index = 3
     }
     
     @IBAction func checkAnswers(_ sender: Any) {
-        print(letters)
-        print(randomNum)
-        if(letterTextField.text?.uppercased() == letters[randomNum - 1].uppercased()) {
-            letterTextField.backgroundColor = UIColor.green
+        if(letterTextField.text?.uppercased() == letters[randomNum].uppercased()) {
+            letterTextField.backgroundColor = UIColor(red:0.41, green:0.71, blue:0.68, alpha:1.0)
             didGuess = true
         } else {
-            letterTextField.backgroundColor = UIColor.red
+            letterTextField.backgroundColor = UIColor(red:0.81, green:0.53, blue:0.63, alpha:1.0)
         }
+        submitLabel.isHidden = false
         submitButton.isEnabled = false
-        backButton.isHidden = false
+        nextButton.isHidden = false
+        correctLabel.text = letters[randomNum]
+        correctLabel.isHidden = false
         
         //entity set up
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -99,9 +99,7 @@ class CircleViewController: UIViewController {
         }
     }
     
-    @IBAction func backToNav(_ sender: Any) {
-        performSegue(withIdentifier: "circleToNav", sender: self)
+    @IBAction func nextEx(_ sender: Any) {
+        performSegue(withIdentifier: "nextEx2", sender: self)
     }
-    
-
 }
